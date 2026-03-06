@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Dnyanda ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(#ffd6e7,#ffc0cb,#ffe4ef);
+color:#5a0040;
+text-align:center;
+overflow:hidden;
+}
+
+/* slides */
+
+.slide{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+box-sizing:border-box;
+}
+
+button{
+padding:14px 26px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4da6;
+color:white;
+cursor:pointer;
+}
+
+/* typing */
+
+.typing{
+font-size:22px;
+border-right:3px solid #5a0040;
+white-space:nowrap;
+overflow:hidden;
+}
+
+/* moon */
+
+.moon{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:70vw;
+max-width:420px;
+height:70vw;
+max-height:420px;
+background:radial-gradient(circle,#ffffff,#ffe6f2,#ffd1e6);
+border-radius:50%;
+box-shadow:0 0 80px rgba(255,255,255,0.9),0 0 160px rgba(255,182,193,0.6);
+z-index:0;
+}
+
+/* sparkle stars */
+
+.star{
+position:absolute;
+color:white;
+font-size:12px;
+animation:twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+0%,100%{opacity:0.2;}
+50%{opacity:1;}
+}
+
+/* slideshow */
+
+.photoBox{
+display:none;
+min-height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+.photoBox img{
+width:80vw;
+max-width:360px;
+border-radius:20px;
+box-shadow:0 0 30px white,0 0 80px pink;
+opacity:0;
+transform:scale(.8);
+transition:1.5s;
+z-index:2;
+}
+
+/* hearts */
+
+.bgHeart{
+position:fixed;
+font-size:22px;
+opacity:.5;
+animation:float 10s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
+}
+
+/* final */
+
+.final{
+display:none;
+min-height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+font-size:20px;
+}
+
+/* miss page */
+
+.missPage{
+display:none;
+min-height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.missText{
+font-size:28px;
+color:#d1006c;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music">
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="slide" id="slide1">
+<h1>Happy Birthday Dnyanda ❤️</h1>
+<button onclick="startStory()">Start Surprise</button>
+</div>
+
+<div class="slide" id="slide2" style="display:none">
+<h2>You are one of the most beautiful person I have ever met ❤️</h2>
+<div style="font-size:70px">🎂</div>
+</div>
+
+<div class="slide" id="slide3" style="display:none">
+<div class="typing" id="typingText"></div>
+</div>
+
+<div class="photoBox" id="photoBox">
+<div class="moon"></div>
+<h2 style="z-index:2">Beautiful Moon 🌙</h2>
+<img id="photo" src="image (1).JPG">
+</div>
+
+<div class="final" id="final">
+<h1>❤️ Happy Birthday Dnyanda ❤️</h1>
+<p>
+Some people come into our lives unexpectedly…<br><br>
+and they become the most beautiful part of our memories.<br><br>
+You are one of those special people for me.
+</p>
+</div>
+
+<div class="missPage" id="missPage">
+<div class="missText" id="missTyping"></div>
+</div>
+
+<script>
+
+/* stars around moon */
+
+function createStars(){
+for(let i=0;i<40;i++){
+let s=document.createElement("div")
+s.className="star"
+s.innerHTML="✦"
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
+document.body.appendChild(s)
+}
+}
+createStars()
+
+/* floating hearts */
+
+function createHeart(){
+let h=document.createElement("div")
+h.className="bgHeart"
+h.innerHTML="❤️"
+h.style.left=Math.random()*100+"vw"
+h.style.animationDuration=(Math.random()*5+5)+"s"
+document.body.appendChild(h)
+setTimeout(()=>h.remove(),10000)
+}
+setInterval(createHeart,800)
+
+/* typing message */
+
+const message="Some memories never fade... Especially when they are with someone special ❤️"
+let i=0
+
+function typeWriter(){
+if(i<message.length){
+document.getElementById("typingText").innerHTML+=message.charAt(i)
+i++
+setTimeout(typeWriter,45)
+}
+}
+
+/* miss typing */
+
+const miss="💌 I miss you Dnyanda ❤️"
+let m=0
+
+function missTyping(){
+if(m<miss.length){
+document.getElementById("missTyping").innerHTML+=miss.charAt(m)
+m++
+setTimeout(missTyping,70)
+}
+}
+
+/* story */
+
+function startStory(){
+
+let music=document.getElementById("music")
+music.volume=.8
+music.play()
+
+showSlide(2)
+
+setTimeout(()=>{showSlide(3);typeWriter()},5000)
+
+setTimeout(startPhotos,11000)
+}
+
+function showSlide(n){
+document.querySelectorAll(".slide").forEach(s=>s.style.display="none")
+document.getElementById("slide"+n).style.display="flex"
+}
+
+/* photos */
+
+const photos=[
+"image (1).JPG","image (2).JPG","image (3).JPG","image (4).JPG",
+"image (5).JPG","image (6).JPG","image (7).JPG","image (8).JPG",
+"image (9).JPG","image (10).JPG","image (11).JPG","image (12).JPG",
+"image (13).JPG","image (14).JPG","image (15).JPG","image (16).JPG"
+]
+
+let index=0
+
+function startPhotos(){
+document.querySelectorAll(".slide").forEach(s=>s.style.display="none")
+document.getElementById("photoBox").style.display="flex"
+showPhoto()
+}
+
+function showPhoto(){
+
+let img=document.getElementById("photo")
+img.style.opacity=0
+
+setTimeout(()=>{
+
+img.src=photos[index]
+img.style.opacity=1
+img.style.transform="scale(1)"
+
+index++
+
+if(index>=photos.length){
+setTimeout(showFinal,3000)
+}
+
+},700)
+
+if(index<photos.length){
+setTimeout(showPhoto,3000)
+}
+
+}
+
+function showFinal(){
+
+document.getElementById("photoBox").style.display="none"
+document.getElementById("final").style.display="flex"
+
+setTimeout(showMiss,6000)
+}
+
+function showMiss(){
+
+document.getElementById("final").style.display="none"
+document.getElementById("missPage").style.display="flex"
+missTyping()
+}
+
+</script>
+
+</body>
+</html>
