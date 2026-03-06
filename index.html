@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Dnyanda ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#f7c6d0;
+overflow:hidden;
+text-align:center;
+color:#c2185b;
+}
+
+/* heart explosion */
+
+.heart{
+position:fixed;
+font-size:24px;
+animation:explode 1.5s forwards;
+}
+
+@keyframes explode{
+0%{transform:scale(.3);opacity:1}
+100%{transform:translate(var(--x),var(--y)) scale(2);opacity:0}
+}
+
+/* stars */
+
+.star{
+position:fixed;
+color:white;
+font-size:12px;
+animation:twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+0%,100%{opacity:.3}
+50%{opacity:1}
+}
+
+/* slides */
+
+.slide{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+button{
+padding:14px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+}
+
+/* typing */
+
+.typing{
+font-size:24px;
+border-right:3px solid #c2185b;
+white-space:nowrap;
+overflow:hidden;
+}
+
+/* moon */
+
+.moon{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:340px;
+height:340px;
+background:radial-gradient(circle,#fff,#ffe6f0);
+border-radius:50%;
+box-shadow:0 0 80px white;
+}
+
+/* moon particles */
+
+.particle{
+position:absolute;
+background:white;
+width:4px;
+height:4px;
+border-radius:50%;
+opacity:.8;
+animation:float 6s infinite linear;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-200px)}
+}
+
+/* slideshow */
+
+.photoBox{
+display:none;
+height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+.photoBox img{
+width:85%;
+max-width:360px;
+border-radius:20px;
+box-shadow:0 0 40px white;
+opacity:0;
+transform:scale(.9);
+transition:1s;
+}
+
+/* instagram story bar */
+
+.storyBar{
+position:fixed;
+top:0;
+left:0;
+height:4px;
+background:white;
+width:0%;
+}
+
+/* final */
+
+.final{
+display:none;
+height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+/* love letter */
+
+.letterPage{
+display:none;
+height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.letter{
+background:white;
+padding:25px;
+border-radius:15px;
+max-width:400px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+color:#444;
+font-size:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music">
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="storyBar" id="storyBar"></div>
+
+<div class="slide" id="slide1">
+<h1>Happy Birthday Dnyanda ❤️</h1>
+<button onclick="startStory()">Start Surprise</button>
+</div>
+
+<div class="slide" id="slide2" style="display:none">
+<h2>You are one of the most beautiful person I have ever met ❤️</h2>
+<div style="font-size:70px">🎂</div>
+</div>
+
+<div class="slide" id="slide3" style="display:none">
+<div class="typing" id="typingText"></div>
+</div>
+
+<div class="photoBox" id="photoBox">
+<div class="moon" id="moon"></div>
+<h2>Beautiful Moon 🌙</h2>
+<img id="photo" src="image (1).JPG">
+</div>
+
+<div class="final" id="final">
+<h1>❤️ Happy Birthday Dnyanda ❤️</h1>
+<p>Some people come into our lives unexpectedly…<br><br>
+and they become the most beautiful part of our memories.<br><br>
+You are one of those special people for me.</p>
+</div>
+
+<div class="letterPage" id="letterPage">
+<img src="photoA.JPG" style="width:80%;max-width:350px;border-radius:20px;margin-bottom:20px;">
+<div class="letter">
+💌 I miss you Dnyanda ❤️<br><br>
+No matter how far life takes us, some memories stay forever in the heart.
+</div>
+</div>
+
+<script>
+
+/* heart explosion */
+
+function heartExplosion(){
+for(let i=0;i<25;i++){
+let h=document.createElement("div")
+h.className="heart"
+h.innerHTML="❤️"
+h.style.left="50%"
+h.style.top="50%"
+h.style.setProperty("--x",(Math.random()*600-300)+"px")
+h.style.setProperty("--y",(Math.random()*600-300)+"px")
+document.body.appendChild(h)
+setTimeout(()=>h.remove(),1500)
+}
+}
+
+heartExplosion()
+
+/* stars */
+
+for(let i=0;i<60;i++){
+let s=document.createElement("div")
+s.className="star"
+s.innerHTML="✦"
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
+document.body.appendChild(s)
+}
+
+/* moon particles */
+
+for(let i=0;i<40;i++){
+let p=document.createElement("div")
+p.className="particle"
+p.style.left=Math.random()*300+"px"
+p.style.top=Math.random()*300+"px"
+document.getElementById("moon").appendChild(p)
+}
+
+/* typing */
+
+const message="Some memories never fade... Especially when they are with someone special ❤️"
+let i=0
+
+function typeWriter(){
+if(i<message.length){
+document.getElementById("typingText").innerHTML+=message.charAt(i)
+i++
+setTimeout(typeWriter,40)
+}
+}
+
+/* story */
+
+function startStory(){
+
+document.getElementById("music").play()
+
+showSlide(2)
+
+setTimeout(()=>{
+showSlide(3)
+typeWriter()
+},4000)
+
+setTimeout(startPhotos,9000)
+
+}
+
+/* slides */
+
+function showSlide(n){
+document.querySelectorAll(".slide").forEach(s=>s.style.display="none")
+document.getElementById("slide"+n).style.display="flex"
+}
+
+/* photos */
+
+const photos=[
+"image (1).JPG",
+"image (2).JPG",
+"image (3).JPG",
+"image (4).JPG",
+"image (5).JPG",
+"image (6).JPG",
+"image (7).JPG",
+"image (8).JPG",
+"image (9).JPG",
+"image (10).JPG",
+"image (11).JPG",
+"image (12).JPG",
+"image (13).JPG",
+"image (14).JPG",
+"image (15).JPG",
+"image (16).JPG"
+]
+
+let index=0
+
+function startPhotos(){
+
+document.querySelectorAll(".slide").forEach(s=>s.style.display="none")
+document.getElementById("photoBox").style.display="flex"
+showPhoto()
+
+}
+
+/* instagram story progress */
+
+function storyProgress(){
+
+let bar=document.getElementById("storyBar")
+bar.style.width="0%"
+
+let w=0
+let timer=setInterval(()=>{
+w+=2
+bar.style.width=w+"%"
+if(w>=100) clearInterval(timer)
+},60)
+
+}
+
+function showPhoto(){
+
+storyProgress()
+
+let img=document.getElementById("photo")
+
+img.style.opacity=0
+
+setTimeout(()=>{
+
+img.src=photos[index]
+
+img.style.opacity=1
+
+index++
+
+if(index>=photos.length){
+
+setTimeout(showFinal,3500)
+
+}
+
+},500)
+
+if(index<photos.length){
+
+setTimeout(showPhoto,3500)
+
+}
+
+}
+
+function showFinal(){
+
+document.getElementById("photoBox").style.display="none"
+
+document.getElementById("final").style.display="flex"
+
+setTimeout(showLetter,6000)
+
+}
+
+function showLetter(){
+
+document.getElementById("final").style.display="none"
+
+document.getElementById("letterPage").style.display="flex"
+
+}
+
+</script>
+
+</body>
+</html>
