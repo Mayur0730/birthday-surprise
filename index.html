@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Beautiful Moon ❤️🌙</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#f6c1cc;
+overflow:hidden;
+text-align:center;
+color:#c2185b;
+}
+
+/* heart rain */
+
+.heart{
+position:fixed;
+top:-20px;
+font-size:20px;
+animation:fall linear infinite;
+opacity:0.9;
+}
+
+@keyframes fall{
+0%{transform:translateY(-20px)}
+100%{transform:translateY(100vh)}
+}
+
+/* stars */
+
+.star{
+position:fixed;
+color:white;
+font-size:10px;
+animation:twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+0%,100%{opacity:.3}
+50%{opacity:1}
+}
+
+/* slides */
+
+.slide{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+box-sizing:border-box;
+}
+
+button{
+padding:14px 28px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+}
+
+/* typing */
+
+.typing{
+font-size:22px;
+max-width:90%;
+line-height:1.6;
+}
+
+/* glowing moon */
+
+.moon{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:260px;
+height:260px;
+background:radial-gradient(circle,#fff,#ffe6f0);
+border-radius:50%;
+animation:pulse 3s infinite;
+box-shadow:0 0 60px white;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 40px white}
+50%{box-shadow:0 0 120px white}
+100%{box-shadow:0 0 40px white}
+}
+
+/* slideshow */
+
+.photoBox{
+display:none;
+min-height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+position:relative;
+padding:20px;
+}
+
+.photoBox img{
+width:90%;
+max-width:340px;
+border-radius:20px;
+box-shadow:0 0 40px white;
+opacity:0;
+transform:scale(.85);
+transition:1.2s;
+}
+
+/* title */
+
+.moonTitle{
+font-size:28px;
+font-weight:bold;
+margin-bottom:20px;
+z-index:2;
+}
+
+/* final */
+
+.final{
+display:none;
+min-height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+/* letter */
+
+.letterPage{
+display:none;
+min-height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.letter{
+background:white;
+padding:20px;
+border-radius:15px;
+max-width:350px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+color:#444;
+font-size:18px;
+}
+
+.letterPage img{
+width:90%;
+max-width:320px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music">
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="slide" id="slide1">
+<h1>Happy Birthday Dnyanda ❤️</h1>
+<button onclick="startStory()">Start Surprise</button>
+</div>
+
+<div class="slide" id="slide2" style="display:none">
+<h2>You are one of the most beautiful person I have ever met ❤️</h2>
+<div style="font-size:70px">🎂</div>
+</div>
+
+<div class="slide" id="slide3" style="display:none">
+<div class="typing" id="typingText"></div>
+</div>
+
+<div class="photoBox" id="photoBox">
+
+<div class="moon"></div>
+
+<div class="moonTitle">
+Happy Birthday Beautiful Moon ❤️🌙
+</div>
+
+<img id="photo" src="image (1).JPG">
+
+</div>
+
+<div class="final" id="final">
+
+<h2>❤️ Happy Birthday Dnyanda ❤️</h2>
+
+<p style="max-width:90%">
+
+Some memories never fade…<br><br>
+
+Especially when they are with someone special ❤️
+
+</p>
+
+</div>
+
+<div class="letterPage" id="letterPage">
+
+<img src="photoA.JPG">
+
+<div class="letter" id="letterText"></div>
+
+</div>
+
+<script>
+
+/* heart rain */
+
+function heartRain(){
+let h=document.createElement("div")
+h.className="heart"
+h.innerHTML="❤️"
+h.style.left=Math.random()*100+"vw"
+h.style.animationDuration=(Math.random()*5+5)+"s"
+document.body.appendChild(h)
+setTimeout(()=>h.remove(),8000)
+}
+
+setInterval(heartRain,300)
+
+/* stars */
+
+for(let i=0;i<60;i++){
+let s=document.createElement("div")
+s.className="star"
+s.innerHTML="✦"
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
+document.body.appendChild(s)
+}
+
+/* typing message */
+
+const message="Some memories never fade... Especially when they are with someone special ❤️"
+let i=0
+
+function typeWriter(){
+if(i<message.length){
+document.getElementById("typingText").innerHTML+=message.charAt(i)
+i++
+setTimeout(typeWriter,40)
+}
+}
+
+/* story */
+
+function startStory(){
+
+document.getElementById("music").play()
+
+showSlide(2)
+
+setTimeout(()=>{
+showSlide(3)
+typeWriter()
+},4000)
+
+setTimeout(startPhotos,9000)
+
+}
+
+function showSlide(n){
+document.querySelectorAll(".slide").forEach(s=>s.style.display="none")
+document.getElementById("slide"+n).style.display="flex"
+}
+
+/* photos */
+
+const photos=[
+"image (1).JPG",
+"image (2).JPG",
+"image (3).JPG",
+"image (4).JPG",
+"image (5).JPG",
+"image (6).JPG",
+"image (7).JPG",
+"image (8).JPG",
+"image (9).JPG",
+"image (10).JPG",
+"image (11).JPG",
+"image (12).JPG",
+"image (13).JPG",
+"image (14).JPG",
+"image (15).JPG",
+"image (16).JPG"
+]
+
+let index=0
+
+function startPhotos(){
+
+document.querySelectorAll(".slide").forEach(s=>s.style.display="none")
+document.getElementById("photoBox").style.display="flex"
+showPhoto()
+
+}
+
+function showPhoto(){
+
+let img=document.getElementById("photo")
+
+img.style.opacity=0
+
+setTimeout(()=>{
+
+img.src=photos[index]
+
+img.style.opacity=1
+img.style.transform="scale(1)"
+
+index++
+
+if(index>=photos.length){
+
+setTimeout(showFinal,3000)
+
+}
+
+},600)
+
+if(index<photos.length){
+
+setTimeout(showPhoto,3000)
+
+}
+
+}
+
+function showFinal(){
+
+document.getElementById("photoBox").style.display="none"
+document.getElementById("final").style.display="flex"
+
+setTimeout(showLetter,5000)
+
+}
+
+/* typing love letter */
+
+const letter="💌 I miss you Dnyanda ❤️\n\nNo matter how far life takes us, some memories stay forever in the heart."
+let l=0
+
+function typeLetter(){
+
+if(l<letter.length){
+document.getElementById("letterText").innerHTML+=letter.charAt(l)
+l++
+setTimeout(typeLetter,40)
+}
+
+}
+
+function showLetter(){
+
+document.getElementById("final").style.display="none"
+document.getElementById("letterPage").style.display="flex"
+
+typeLetter()
+
+}
+
+</script>
+
+</body>
+</html>
